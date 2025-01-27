@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Пирамида чисел</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 300px;
+    }
+    h1 {
+      color: #333;
+      font-size: 24px;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      width: 100%;
+      text-align: center;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      width: 100%;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .pyramid {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+    .pyramid-line {
+      font-family: monospace;
+      line-height: 1.5;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Пирамида чисел</h1>
+    <label for="height">Введите высоту пирамиды:</label>
+    <input type="number" id="height" placeholder="Высота пирамиды" min="1" max="20">
+    <button onclick="buildPyramid()">Построить пирамиду</button>
+    <div class="pyramid" id="pyramid"></div>
+  </div>
+
+  <script>
+    const buildPyramid = () => {
+      const height = parseInt(document.getElementById('height').value);
+      const pyramidDiv = document.getElementById('pyramid');
+      pyramidDiv.innerHTML = ''; // Очистить предыдущий результат
+
+      if (isNaN(height) || height < 1 || height > 20) {
+        pyramidDiv.innerHTML = 'Введите корректную высоту от 1 до 20';
+        return;
+      }
+
+      let pyramid = '';
+
+      for (let i = 1; i <= height; i++) {
+        let line = '';
+        for (let j = 1; j <= i; j++) {
+          line += j;
+        }
+        pyramid += `<div class="pyramid-line">${line}</div>`;
+      }
+
+      pyramidDiv.innerHTML = pyramid;
+    };
+  </script>
+</body>
+</html>
